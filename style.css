@@ -43,3 +43,13 @@ li {
   padding: 8px;
   background-color: #222;
 }
+.history-section {
+  margin-top: 20px;
+}
+
+.history-section ul li {
+  background-color: #1a1a1a;
+  border-left: 4px solid #00ffcc;
+  padding: 8px;
+  margin: 4px 0;
+}
