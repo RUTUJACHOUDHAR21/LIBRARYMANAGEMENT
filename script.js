@@ -7,6 +7,7 @@ const books = [
 ];
 
 const borrowedBooks = [];
+const historyLog = [];
 
 function renderBooks() {
   const bookList = document.getElementById("bookList");
@@ -28,6 +29,14 @@ function renderBooks() {
     `;
     borrowedList.appendChild(li);
   });
+
+  const logList = document.getElementById("historyLog");
+  logList.innerHTML = "";
+  historyLog.forEach(log => {
+    const li = document.createElement("li");
+    li.innerHTML = log;
+    logList.appendChild(li);
+  });
 }
 
 function borrowBook() {
@@ -37,12 +46,14 @@ function borrowBook() {
 
   if (studentName && index !== -1) {
     books.splice(index, 1);
+    const time = new Date().toLocaleString();
     borrowedBooks.push({
       student: studentName,
       book: bookTitle,
-      borrowTime: new Date().toLocaleString(),
+      borrowTime: time,
       returnTime: null
     });
+    historyLog.push(`📘 ${bookTitle} borrowed by ${studentName} at ${time}`);
     renderBooks();
   } else {
     alert("Invalid student name or book title!");
@@ -54,8 +65,10 @@ function returnBook() {
   const index = borrowedBooks.findIndex(b => b.book === bookTitle && b.returnTime === null);
 
   if (index !== -1) {
+    const time = new Date().toLocaleString();
     books.push(borrowedBooks[index].book);
-    borrowedBooks[index].returnTime = new Date().toLocaleString();
+    borrowedBooks[index].returnTime = time;
+    historyLog.push(`✅ ${bookTitle} returned by ${borrowedBooks[index].student} at ${time}`);
     renderBooks();
   } else {
     alert("Book not currently borrowed or already returned!");
