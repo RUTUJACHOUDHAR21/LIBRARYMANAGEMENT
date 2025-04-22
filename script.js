@@ -53,7 +53,7 @@ function borrowBook() {
       borrowTime: time,
       returnTime: null
     });
-    historyLog.push(`📘 ${bookTitle} borrowed by ${studentName} at ${time}`);
+    historyLog.push(`📘 <strong>${bookTitle}</strong> borrowed by <em>${studentName}</em> at ${time}`);
     renderBooks();
   } else {
     alert("Invalid student name or book title!");
@@ -68,7 +68,7 @@ function returnBook() {
     const time = new Date().toLocaleString();
     books.push(borrowedBooks[index].book);
     borrowedBooks[index].returnTime = time;
-    historyLog.push(`✅ ${bookTitle} returned by ${borrowedBooks[index].student} at ${time}`);
+    historyLog.push(`✅ <strong>${bookTitle}</strong> returned by <em>${borrowedBooks[index].student}</em> at ${time}`);
     renderBooks();
   } else {
     alert("Book not currently borrowed or already returned!");
