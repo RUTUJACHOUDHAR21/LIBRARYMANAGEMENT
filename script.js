@@ -1,4 +1,11 @@
-const books = ["JavaScript Basics", "HTML & CSS", "Python Programming", "Data Structures", "Algorithms"];
+const books = [
+  "JavaScript Basics",
+  "HTML & CSS",
+  "Python Programming",
+  "Data Structures",
+  "Algorithms"
+];
+
 const borrowedBooks = [];
 
 function renderBooks() {
@@ -14,7 +21,11 @@ function renderBooks() {
   borrowedList.innerHTML = "";
   borrowedBooks.forEach(entry => {
     const li = document.createElement("li");
-    li.textContent = `${entry.book} borrowed by ${entry.student} at ${entry.time}`;
+    li.innerHTML = `
+      <strong>${entry.book}</strong> borrowed by <em>${entry.student}</em><br/>
+      ⏰ Borrowed At: ${entry.borrowTime}
+      ${entry.returnTime ? `<br/>✅ Returned At: ${entry.returnTime}` : ""}
+    `;
     borrowedList.appendChild(li);
   });
 }
@@ -29,7 +40,8 @@ function borrowBook() {
     borrowedBooks.push({
       student: studentName,
       book: bookTitle,
-      time: new Date().toLocaleTimeString()
+      borrowTime: new Date().toLocaleString(),
+      returnTime: null
     });
     renderBooks();
   } else {
@@ -39,14 +51,14 @@ function borrowBook() {
 
 function returnBook() {
   const bookTitle = document.getElementById("bookTitle").value.trim();
-  const index = borrowedBooks.findIndex(b => b.book === bookTitle);
+  const index = borrowedBooks.findIndex(b => b.book === bookTitle && b.returnTime === null);
 
   if (index !== -1) {
     books.push(borrowedBooks[index].book);
-    borrowedBooks.splice(index, 1);
+    borrowedBooks[index].returnTime = new Date().toLocaleString();
     renderBooks();
   } else {
-    alert("Book not found in borrowed list!");
+    alert("Book not currently borrowed or already returned!");
   }
 }
 
