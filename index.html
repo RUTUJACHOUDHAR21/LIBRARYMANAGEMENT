@@ -1,35 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Library System</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div class="container">
     <h1>📚 Library Management System</h1>
 
-    <div class="book-list">
-      <h2>Available Books</h2>
-      <ul id="bookList"></ul>
-    </div>
-
-    <div class="form-section">
+    <div class="input-section">
       <input type="text" id="studentName" placeholder="Student Name" />
       <input type="text" id="bookTitle" placeholder="Book Title" />
       <button onclick="borrowBook()">Borrow Book</button>
       <button onclick="returnBook()">Return Book</button>
     </div>
-    <!-- Add below borrowed-section -->
-<div class="history-section">
-  <h2>📜 History Log</h2>
-  <ul id="historyLog"></ul>
-</div>
 
+    <div class="section">
+      <h2>📕 Available Books</h2>
+      <ul id="bookList"></ul>
+    </div>
 
-    <div class="borrowed-section">
-      <h2>Borrowed Books</h2>
+    <div class="section">
+      <h2>📘 Borrowed Books</h2>
       <ul id="borrowedList"></ul>
+    </div>
+
+    <div class="section">
+      <h2>📜 History Log</h2>
+      <ul id="historyLog"></ul>
     </div>
   </div>
 
